@@ -28,7 +28,7 @@ where BookingReference like @bookingReference
 go
 create proc proc_GetAmenitiesByCabinTypeID @cabinTypeID int
 as
-select AmenityID, Service, Price
+select AmenityID as ID, Service, Price
 from AmenitiesCabinType inner join Amenities
 	on AmenitiesCabinType.AmenityID = Amenities.ID
 where CabinTypeID like @cabinTypeID

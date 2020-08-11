@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO_Amenity.cs" />
     <Compile Include="DTO_CabinType.cs" />
     <Compile Include="DTO_Flight.cs" />
     <Compile Include="DTO_Route.cs" />

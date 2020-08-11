@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DTO;
 using BUS;
+using System.Text.RegularExpressions;
 
 namespace GUI
 {
@@ -48,12 +49,16 @@ namespace GUI
             cbFlights.DataSource = items;
             cbFlights.DisplayMember = "FlightDetail";
             cbFlights.ValueMember = "TicketID";
-
-            return;
         }
 
         private void btnShowAnimities_Click(object sender, EventArgs e)
         {
+            // clear checkBoxes first
+
+            ClearAllAmenityCheckBoxes();
+
+            // Declare phase
+
             string ticketID = cbFlights.SelectedValue.ToString();
             BUS_Ticket bus_ticket = new BUS_Ticket();
             DTO_Ticket ticket = bus_ticket.GetTicketByID(ticketID);
@@ -61,24 +66,55 @@ namespace GUI
             BUS_CabinType bus_cabinType = new BUS_CabinType();
             DTO_CabinType cabinType = bus_cabinType.GetCabinTypeByID(ticket.CabinTypeID);
 
+            BUS_Amenity bus_amenity = new BUS_Amenity();
+            List<DTO_Amenity> lsAmenities = bus_amenity.GetAmenitiesListByCabinTypeID(ticket.CabinTypeID);
+
+            Dictionary<string, DTO_Amenity> amenityKeyValuePairs = new Dictionary<string, DTO_Amenity>();
+            string regex = @"\s";
+
+            // Handle UI logic
+
             lbFullname.Text = string.Format("{0} {1}", ticket.FirstName, ticket.LastName);
             lbPassportNumber.Text = ticket.PassportNumber;
             lbCabinClass.Text = cabinType.Name;
 
-            gbAmenities.Enabled = true;
-            foreach (Control control in gbAmenities.Controls)
+            gbTest.Enabled = true;
+            for (int i = 0; i <  lsAmenities.Count; i++)
             {
-                if (control is CheckBox)
+                string key = string.Format("{0} (${1})", lsAmenities[i].Service, lsAmenities[i].Price);
+                amenityKeyValuePairs.Add(key, lsAmenities[i]);
+
+                CheckBox chkBox = new CheckBox();
+                chkBox.Name = "chkb" + Regex.Replace(lsAmenities[i].Service, regex, "");
+                chkBox.Text = key;
+                chkBox.Font = new Font(Font.FontFamily, 8.5f);
+                chkBox.Location = new Point((i / 4) * 230 + 20, (i % 4) * 20 + 40);
+                chkBox.AutoSize = true;
+
+                // default amenities
+                if (lsAmenities[i].Price == 0)
                 {
-                    CheckBox chkB = (CheckBox)control;
-                    chkB.Checked = false;
+                    chkBox.Checked = true;
+                    chkBox.Enabled = false;
                 }
+
+                gbTest.Controls.Add(chkBox);
             }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ClearAllAmenityCheckBoxes()
+        {
+            for (int i = 0; i < gbTest.Controls.Count; i++)
+            {
+                gbTest.Controls[i].Visible = false;
+                gbTest.Controls[i].Enabled = false;
+                gbTest.Controls.Remove(gbTest.Controls[i]);
+            }
         }
     }
 }
