@@ -38,5 +38,26 @@ namespace BUS
 
             return lsTicket;
         }
+        
+        public DTO_Ticket GetTicketByID(string ID)
+        {
+            DataTable dt = dal_tickets.GetTicketTableByID(ID);
+            DataRow dr = dt.Rows[0];
+            DTO_Ticket ticket = new DTO_Ticket();
+
+            ticket.ID = dr["ID"].ToString();
+            ticket.UserID = dr["UserID"].ToString();
+            ticket.ScheduleID = dr["ScheduleID"].ToString();
+            ticket.CabinTypeID = dr["CabinTypeID"].ToString();
+            ticket.FirstName = dr["FirstName"].ToString();
+            ticket.LastName = dr["LastName"].ToString();
+            ticket.Phone = dr["Phone"].ToString();
+            ticket.PassportNumber = dr["PassportNumber"].ToString();
+            ticket.PassportCountryID = dr["PassportCountryID"].ToString();
+            ticket.BookingReference = dr["BookingReference"].ToString();
+            ticket.Confirmed = dr["Confirmed"].ToString();
+
+            return ticket;
+        }
     }
 }

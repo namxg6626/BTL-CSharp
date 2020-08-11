@@ -35,5 +35,19 @@ namespace DAL
 				return null;
 			}
 		}
+
+		public DataTable GetTicketTableByID(string ID)
+		{
+			try
+			{
+				string query = string.Format("select * from Tickets where ID like '{0}'", ID);
+				DataTable dt = base.GetTable(query);
+				return dt;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
     }
 }

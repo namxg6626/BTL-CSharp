@@ -24,25 +24,6 @@ namespace GUI
         {
             string bookingReference = tbBookReference.Text;
 
-            //BUS_Ticket bus_ticket = new BUS_Ticket();
-            //BUS_Schedule bus_schedule = new BUS_Schedule();
-            //List<DTO_Ticket> lsTicket = bus_ticket.GetTicketsByBookingReference(bookingReference);
-
-            //DataTable items = new DataTable();
-            //items.Columns.Add("FlightDetail", typeof(string));
-            //items.Columns.Add("TicketID", typeof(string));
-
-            //foreach (DTO_Ticket ticket in lsTicket)
-            //{
-            //    DTO_Schedule schedule = bus_schedule.GetScheduleByID(ticket.ScheduleID);
-            //    items.Rows.Add(schedule.FlightNumber, ticket.ID);
-            //}
-
-            //cbFlights.DataSource = items;
-            //cbFlights.DisplayMember = "FlightDetail";
-            //cbFlights.ValueMember = "TicketID";
-            //cbFlights.SelectedIndex = 0;
-
             BUS_Flight bus_flight = new BUS_Flight();
             List<DTO_Flight> lsFlight = bus_flight.GetFlightsListByBookingReference(bookingReference);
             DataTable items = new DataTable();
@@ -57,9 +38,10 @@ namespace GUI
                         flight.FlightNumber, 
                         flight.DepartureAirportCode, 
                         flight.ArrivalAirportCode, 
-                        flight.Date, 
+                        flight.Date,
                         flight.Time
-                    ), flight.TicketID
+                    ), 
+                    flight.TicketID
                 );
             }
 
@@ -68,6 +50,30 @@ namespace GUI
             cbFlights.ValueMember = "TicketID";
 
             return;
+        }
+
+        private void btnShowAnimities_Click(object sender, EventArgs e)
+        {
+            string ticketID = cbFlights.SelectedValue.ToString();
+            BUS_Ticket bus_ticket = new BUS_Ticket();
+            DTO_Ticket ticket = bus_ticket.GetTicketByID(ticketID);
+
+            BUS_CabinType bus_cabinType = new BUS_CabinType();
+            DTO_CabinType cabinType = bus_cabinType.GetCabinTypeByID(ticket.CabinTypeID);
+
+            lbFullname.Text = string.Format("{0} {1}", ticket.FirstName, ticket.LastName);
+            lbPassportNumber.Text = ticket.PassportNumber;
+            lbCabinClass.Text = cabinType.Name;
+
+            gbAmenities.Enabled = true;
+            foreach (Control control in gbAmenities.Controls)
+            {
+                if (control is CheckBox)
+                {
+                    CheckBox chkB = (CheckBox)control;
+                    chkB.Checked = false;
+                }
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
