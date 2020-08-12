@@ -15,15 +15,29 @@ namespace GUI
 {
     public partial class PurchaseAmanities : Form
     {
+        Dictionary<string, DTO_Amenity> amenityKeyValuePairs = new Dictionary<string, DTO_Amenity>();
+
         public PurchaseAmanities()
         {
             InitializeComponent();
         }
+        //
+        // UI Event methods
+        //
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
-        // booking reference ex: 12345E
         private void btnOk_Click(object sender, EventArgs e)
         {
-            string bookingReference = tbBookReference.Text;
+            // Reset Displaying data
+
+            gbAmenities.Enabled = false;
+            ClearAllAmenityCheckBoxes();
+            ClearAllLableDataHolder();
+
+            string bookingReference = tbBookReference.Text.ToUpper();
 
             BUS_Flight bus_flight = new BUS_Flight();
             List<DTO_Flight> lsFlight = bus_flight.GetFlightsListByBookingReference(bookingReference);
@@ -53,10 +67,6 @@ namespace GUI
 
         private void btnShowAnimities_Click(object sender, EventArgs e)
         {
-            // clear checkBoxes first
-
-            ClearAllAmenityCheckBoxes();
-
             // Declare phase
 
             string ticketID = cbFlights.SelectedValue.ToString();
@@ -69,52 +79,85 @@ namespace GUI
             BUS_Amenity bus_amenity = new BUS_Amenity();
             List<DTO_Amenity> lsAmenities = bus_amenity.GetAmenitiesListByCabinTypeID(ticket.CabinTypeID);
 
-            Dictionary<string, DTO_Amenity> amenityKeyValuePairs = new Dictionary<string, DTO_Amenity>();
-            string regex = @"\s";
-
             // Handle UI logic
 
             lbFullname.Text = string.Format("{0} {1}", ticket.FirstName, ticket.LastName);
             lbPassportNumber.Text = ticket.PassportNumber;
             lbCabinClass.Text = cabinType.Name;
 
-            gbTest.Enabled = true;
-            for (int i = 0; i <  lsAmenities.Count; i++)
+            gbAmenities.Enabled = true;
+            DynamicRenderingCheckBoxes(lsAmenities);
+        }
+        //
+        // Common methods
+        //
+        private void DynamicRenderingCheckBoxes(List<DTO_Amenity> lsAmenities)
+        {
+            for (int i = 0; i < lsAmenities.Count; i++)
             {
                 string key = string.Format("{0} (${1})", lsAmenities[i].Service, lsAmenities[i].Price);
                 amenityKeyValuePairs.Add(key, lsAmenities[i]);
 
                 CheckBox chkBox = new CheckBox();
-                chkBox.Name = "chkb" + Regex.Replace(lsAmenities[i].Service, regex, "");
+                chkBox.Name = "chkb" + Regex.Replace(lsAmenities[i].Service, @"\s", "");
                 chkBox.Text = key;
                 chkBox.Font = new Font(Font.FontFamily, 8.5f);
                 chkBox.Location = new Point((i / 4) * 230 + 20, (i % 4) * 20 + 40);
                 chkBox.AutoSize = true;
+                chkBox.Click += new EventHandler(DynamicAmenityCheckBox_CustomClickEvent);
 
-                // default amenities
+                // disable default amenities
                 if (lsAmenities[i].Price == 0)
                 {
                     chkBox.Checked = true;
                     chkBox.Enabled = false;
                 }
 
-                gbTest.Controls.Add(chkBox);
+                gbAmenities.Controls.Add(chkBox);
             }
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void DynamicAmenityCheckBox_CustomClickEvent(object sender, EventArgs e)
         {
-            this.Close();
+            double itemsSelectedCost = 0;
+
+            foreach (Control control in gbAmenities.Controls)
+            {
+                CheckBox chkBox = (CheckBox)control;
+                if (chkBox.Checked)
+                    itemsSelectedCost += amenityKeyValuePairs[chkBox.Text].Price;
+            }
+
+            double taxes = Math.Round(itemsSelectedCost % 0.05, 2);
+            lbItemsSelected.Text = "$" + itemsSelectedCost.ToString();
+            lbDutiesAndTaxes.Text = "$" + taxes.ToString();
+            lbTotalPayable.Text = "$" + (itemsSelectedCost + taxes).ToString();
         }
 
         private void ClearAllAmenityCheckBoxes()
         {
-            for (int i = 0; i < gbTest.Controls.Count; i++)
+            amenityKeyValuePairs = new Dictionary<string, DTO_Amenity>();
+            for (int i = 0; i < gbAmenities.Controls.Count; i++)
             {
-                gbTest.Controls[i].Visible = false;
-                gbTest.Controls[i].Enabled = false;
-                gbTest.Controls.Remove(gbTest.Controls[i]);
+                gbAmenities.Controls[i].Click -= DynamicAmenityCheckBox_CustomClickEvent;
+                gbAmenities.Controls.Remove(gbAmenities.Controls[i]);
+                ((CheckBox)gbAmenities.Controls[i]).Enabled = false;
+                ((CheckBox)gbAmenities.Controls[i]).Visible = false;
             }
+        }
+
+        private void ClearAllLableDataHolder()
+        {
+            string defaultString_1 = "[XXXX XXXX]";
+            string defaultString_2 = "[$XX]";
+
+            lbFullname.Text = defaultString_1;
+            lbPassportNumber.Text = defaultString_1;
+            lbCabinClass.Text = defaultString_1;
+
+            lbItemsSelected.Text = defaultString_2;
+            lbDutiesAndTaxes.Text = defaultString_2;
+            lbTotalPayable.Text = defaultString_2;
         }
     }
 }

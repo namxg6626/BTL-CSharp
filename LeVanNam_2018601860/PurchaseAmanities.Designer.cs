@@ -43,18 +43,6 @@
             this.lbCabinClass = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.gbAmenities = new System.Windows.Forms.GroupBox();
-            this.chkbFastCheckinLane = new System.Windows.Forms.CheckBox();
-            this.chkbPremiumHeadphonesRental = new System.Windows.Forms.CheckBox();
-            this.chkbWifi250MB = new System.Windows.Forms.CheckBox();
-            this.chkbLaptopRental = new System.Windows.Forms.CheckBox();
-            this.chkbLoungeAccess = new System.Windows.Forms.CheckBox();
-            this.chkbExtrabag = new System.Windows.Forms.CheckBox();
-            this.chkbTabletRental = new System.Windows.Forms.CheckBox();
-            this.chkbTwoNeighboringSeatsFree = new System.Windows.Forms.CheckBox();
-            this.chkbExtraBlanket = new System.Windows.Forms.CheckBox();
-            this.chkbNextSeatFree = new System.Windows.Forms.CheckBox();
-            this.chkbWifi50MB = new System.Windows.Forms.CheckBox();
-            this.chkbSoftDrinks = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -64,9 +52,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.gbTest = new System.Windows.Forms.GroupBox();
             this.gbFlightList.SuspendLayout();
-            this.gbAmenities.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbBookinReference
@@ -167,9 +153,9 @@
             this.lbFullname.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFullname.Location = new System.Drawing.Point(114, 210);
             this.lbFullname.Name = "lbFullname";
-            this.lbFullname.Size = new System.Drawing.Size(102, 16);
+            this.lbFullname.Size = new System.Drawing.Size(94, 16);
             this.lbFullname.TabIndex = 7;
-            this.lbFullname.Text = "[ XXXX XXXX ]";
+            this.lbFullname.Text = "[XXXX XXXX]";
             // 
             // label3
             // 
@@ -213,159 +199,14 @@
             // 
             // gbAmenities
             // 
-            this.gbAmenities.Controls.Add(this.chkbFastCheckinLane);
-            this.gbAmenities.Controls.Add(this.chkbPremiumHeadphonesRental);
-            this.gbAmenities.Controls.Add(this.chkbWifi250MB);
-            this.gbAmenities.Controls.Add(this.chkbLaptopRental);
-            this.gbAmenities.Controls.Add(this.chkbLoungeAccess);
-            this.gbAmenities.Controls.Add(this.chkbExtrabag);
-            this.gbAmenities.Controls.Add(this.chkbTabletRental);
-            this.gbAmenities.Controls.Add(this.chkbTwoNeighboringSeatsFree);
-            this.gbAmenities.Controls.Add(this.chkbExtraBlanket);
-            this.gbAmenities.Controls.Add(this.chkbNextSeatFree);
-            this.gbAmenities.Controls.Add(this.chkbWifi50MB);
-            this.gbAmenities.Controls.Add(this.chkbSoftDrinks);
             this.gbAmenities.Enabled = false;
             this.gbAmenities.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbAmenities.Location = new System.Drawing.Point(42, 613);
+            this.gbAmenities.Location = new System.Drawing.Point(42, 298);
             this.gbAmenities.Name = "gbAmenities";
-            this.gbAmenities.Size = new System.Drawing.Size(702, 164);
+            this.gbAmenities.Size = new System.Drawing.Size(702, 153);
             this.gbAmenities.TabIndex = 12;
             this.gbAmenities.TabStop = false;
             this.gbAmenities.Text = "AMONIC Airlines Amenities";
-            this.gbAmenities.Visible = false;
-            // 
-            // chkbFastCheckinLane
-            // 
-            this.chkbFastCheckinLane.AutoSize = true;
-            this.chkbFastCheckinLane.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbFastCheckinLane.Location = new System.Drawing.Point(448, 90);
-            this.chkbFastCheckinLane.Name = "chkbFastCheckinLane";
-            this.chkbFastCheckinLane.Size = new System.Drawing.Size(169, 20);
-            this.chkbFastCheckinLane.TabIndex = 12;
-            this.chkbFastCheckinLane.Text = "Fast Checkin Lane ($10)";
-            this.chkbFastCheckinLane.UseVisualStyleBackColor = true;
-            // 
-            // chkbPremiumHeadphonesRental
-            // 
-            this.chkbPremiumHeadphonesRental.AutoSize = true;
-            this.chkbPremiumHeadphonesRental.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbPremiumHeadphonesRental.Location = new System.Drawing.Point(448, 38);
-            this.chkbPremiumHeadphonesRental.Name = "chkbPremiumHeadphonesRental";
-            this.chkbPremiumHeadphonesRental.Size = new System.Drawing.Size(229, 20);
-            this.chkbPremiumHeadphonesRental.TabIndex = 11;
-            this.chkbPremiumHeadphonesRental.Text = "Premium Headphones Rental ($5)";
-            this.chkbPremiumHeadphonesRental.UseVisualStyleBackColor = true;
-            // 
-            // chkbWifi250MB
-            // 
-            this.chkbWifi250MB.AutoSize = true;
-            this.chkbWifi250MB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbWifi250MB.Location = new System.Drawing.Point(448, 116);
-            this.chkbWifi250MB.Name = "chkbWifi250MB";
-            this.chkbWifi250MB.Size = new System.Drawing.Size(125, 20);
-            this.chkbWifi250MB.TabIndex = 3;
-            this.chkbWifi250MB.Text = "Wifi 250MB ($50)";
-            this.chkbWifi250MB.UseVisualStyleBackColor = true;
-            // 
-            // chkbLaptopRental
-            // 
-            this.chkbLaptopRental.AutoSize = true;
-            this.chkbLaptopRental.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbLaptopRental.Location = new System.Drawing.Point(246, 90);
-            this.chkbLaptopRental.Name = "chkbLaptopRental";
-            this.chkbLaptopRental.Size = new System.Drawing.Size(143, 20);
-            this.chkbLaptopRental.TabIndex = 5;
-            this.chkbLaptopRental.Text = "Laptop Rental ($15)";
-            this.chkbLaptopRental.UseVisualStyleBackColor = true;
-            // 
-            // chkbLoungeAccess
-            // 
-            this.chkbLoungeAccess.AutoSize = true;
-            this.chkbLoungeAccess.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbLoungeAccess.Location = new System.Drawing.Point(246, 116);
-            this.chkbLoungeAccess.Name = "chkbLoungeAccess";
-            this.chkbLoungeAccess.Size = new System.Drawing.Size(152, 20);
-            this.chkbLoungeAccess.TabIndex = 10;
-            this.chkbLoungeAccess.Text = "Lounge Access ($25)";
-            this.chkbLoungeAccess.UseVisualStyleBackColor = true;
-            // 
-            // chkbExtrabag
-            // 
-            this.chkbExtrabag.AutoSize = true;
-            this.chkbExtrabag.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbExtrabag.Location = new System.Drawing.Point(246, 38);
-            this.chkbExtrabag.Name = "chkbExtrabag";
-            this.chkbExtrabag.Size = new System.Drawing.Size(117, 20);
-            this.chkbExtrabag.TabIndex = 4;
-            this.chkbExtrabag.Text = "Extra Bag ($15)";
-            this.chkbExtrabag.UseVisualStyleBackColor = true;
-            // 
-            // chkbTabletRental
-            // 
-            this.chkbTabletRental.AutoSize = true;
-            this.chkbTabletRental.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbTabletRental.Location = new System.Drawing.Point(246, 64);
-            this.chkbTabletRental.Name = "chkbTabletRental";
-            this.chkbTabletRental.Size = new System.Drawing.Size(140, 20);
-            this.chkbTabletRental.TabIndex = 8;
-            this.chkbTabletRental.Text = "Tablet Rental ($12)";
-            this.chkbTabletRental.UseVisualStyleBackColor = true;
-            // 
-            // chkbTwoNeighboringSeatsFree
-            // 
-            this.chkbTwoNeighboringSeatsFree.AutoSize = true;
-            this.chkbTwoNeighboringSeatsFree.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbTwoNeighboringSeatsFree.Location = new System.Drawing.Point(448, 64);
-            this.chkbTwoNeighboringSeatsFree.Name = "chkbTwoNeighboringSeatsFree";
-            this.chkbTwoNeighboringSeatsFree.Size = new System.Drawing.Size(231, 20);
-            this.chkbTwoNeighboringSeatsFree.TabIndex = 7;
-            this.chkbTwoNeighboringSeatsFree.Text = "Two Neighboring Seats Free ($50)";
-            this.chkbTwoNeighboringSeatsFree.UseVisualStyleBackColor = true;
-            // 
-            // chkbExtraBlanket
-            // 
-            this.chkbExtraBlanket.AutoSize = true;
-            this.chkbExtraBlanket.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbExtraBlanket.Location = new System.Drawing.Point(31, 90);
-            this.chkbExtraBlanket.Name = "chkbExtraBlanket";
-            this.chkbExtraBlanket.Size = new System.Drawing.Size(137, 20);
-            this.chkbExtraBlanket.TabIndex = 6;
-            this.chkbExtraBlanket.Text = "Extra Blanket ($10)";
-            this.chkbExtraBlanket.UseVisualStyleBackColor = true;
-            // 
-            // chkbNextSeatFree
-            // 
-            this.chkbNextSeatFree.AutoSize = true;
-            this.chkbNextSeatFree.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbNextSeatFree.Location = new System.Drawing.Point(31, 116);
-            this.chkbNextSeatFree.Name = "chkbNextSeatFree";
-            this.chkbNextSeatFree.Size = new System.Drawing.Size(148, 20);
-            this.chkbNextSeatFree.TabIndex = 2;
-            this.chkbNextSeatFree.Text = "Next Seat Free ($30)";
-            this.chkbNextSeatFree.UseVisualStyleBackColor = true;
-            // 
-            // chkbWifi50MB
-            // 
-            this.chkbWifi50MB.AutoSize = true;
-            this.chkbWifi50MB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbWifi50MB.Location = new System.Drawing.Point(31, 64);
-            this.chkbWifi50MB.Name = "chkbWifi50MB";
-            this.chkbWifi50MB.Size = new System.Drawing.Size(125, 20);
-            this.chkbWifi50MB.TabIndex = 1;
-            this.chkbWifi50MB.Text = "Wifi 50MB (Free)";
-            this.chkbWifi50MB.UseVisualStyleBackColor = true;
-            // 
-            // chkbSoftDrinks
-            // 
-            this.chkbSoftDrinks.AutoSize = true;
-            this.chkbSoftDrinks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkbSoftDrinks.Location = new System.Drawing.Point(31, 38);
-            this.chkbSoftDrinks.Name = "chkbSoftDrinks";
-            this.chkbSoftDrinks.Size = new System.Drawing.Size(130, 20);
-            this.chkbSoftDrinks.TabIndex = 0;
-            this.chkbSoftDrinks.Text = "Soft Drinks (Free)";
-            this.chkbSoftDrinks.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -455,23 +296,11 @@
             this.label8.TabIndex = 21;
             this.label8.Text = "12345E";
             // 
-            // gbTest
-            // 
-            this.gbTest.Enabled = false;
-            this.gbTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTest.Location = new System.Drawing.Point(42, 289);
-            this.gbTest.Name = "gbTest";
-            this.gbTest.Size = new System.Drawing.Size(702, 164);
-            this.gbTest.TabIndex = 13;
-            this.gbTest.TabStop = false;
-            this.gbTest.Text = "Dynamically Rendering";
-            // 
             // PurchaseAmanities
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 934);
-            this.Controls.Add(this.gbTest);
+            this.ClientSize = new System.Drawing.Size(782, 624);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSave);
@@ -496,8 +325,6 @@
             this.Text = "Purchase Aminities";
             this.gbFlightList.ResumeLayout(false);
             this.gbFlightList.PerformLayout();
-            this.gbAmenities.ResumeLayout(false);
-            this.gbAmenities.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -519,12 +346,6 @@
         private System.Windows.Forms.Label lbCabinClass;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox gbAmenities;
-        private System.Windows.Forms.CheckBox chkbLaptopRental;
-        private System.Windows.Forms.CheckBox chkbExtrabag;
-        private System.Windows.Forms.CheckBox chkbWifi250MB;
-        private System.Windows.Forms.CheckBox chkbNextSeatFree;
-        private System.Windows.Forms.CheckBox chkbWifi50MB;
-        private System.Windows.Forms.CheckBox chkbSoftDrinks;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
@@ -535,13 +356,6 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lbTest;
-        private System.Windows.Forms.CheckBox chkbTwoNeighboringSeatsFree;
-        private System.Windows.Forms.CheckBox chkbExtraBlanket;
-        private System.Windows.Forms.CheckBox chkbFastCheckinLane;
-        private System.Windows.Forms.CheckBox chkbPremiumHeadphonesRental;
-        private System.Windows.Forms.CheckBox chkbLoungeAccess;
-        private System.Windows.Forms.CheckBox chkbTabletRental;
-        private System.Windows.Forms.GroupBox gbTest;
     }
 }
 

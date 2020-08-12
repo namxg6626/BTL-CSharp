@@ -1,39 +1,42 @@
-select * from Tickets
-select * from Schedules
-select * from Aircrafts
-select * from Airports
-select * from Routes
-select * from Amenities
-select * from AmenitiesTickets
-select * from CabinTypes
-select * from AmenitiesCabinType
+SELECT * FROM Tickets
+SELECT * FROM Schedules
+SELECT * FROM Aircrafts
+SELECT * FROM Airports
+SELECT * FROM Routes
+SELECT * FROM Amenities
+SELECT * FROM AmenitiesTickets
+SELECT * FROM CabinTypes
+SELECT * FROM AmenitiesCabinType
 
-select * from Tickets where BookingReference like '12345E'
-select * from Schedules where ID like 117
+SELECT * FROM Tickets WHERE BookingReference like '12345E'
+SELECT * FROM Schedules WHERE ID like 117
 
-go
-create proc proc_GetFlightsByBookingReference @bookingReference varchar(6)
-as
-select t.ID as TicketID, FlightNumber, b.IATACode as DepartureAirportCode, a.IATACode as ArrivalAirportCode, Date, Time
-from Tickets t inner join Schedules s
-	on t.ScheduleID = s.ID
+GO
+CREATE PROC proc_GetFlightsByBookingReference @bookingReference varchar(6)
+AS
+SELECT t.ID AS TicketID, FlightNumber, b.IATACode AS DepartureAirportCode, a.IATACode AS ArrivalAirportCode, Date, Time
+FROM Tickets t inner join Schedules s
+	ON t.ScheduleID = s.ID
 inner join Routes r
-	on s.RouteID = r.ID
+	ON s.RouteID = r.ID
 inner join Airports a
-	on r.ArrivalAirportID = a.ID
+	ON r.ArrivalAirportID = a.ID
 inner join Airports b
-	on r.DepartureAirportID = b.ID
-where BookingReference like @bookingReference
+	ON r.DepartureAirportID = b.ID
+WHERE BookingReference like @bookingReference
 
-go
-create proc proc_GetAmenitiesByCabinTypeID @cabinTypeID int
-as
-select AmenityID as ID, Service, Price
-from AmenitiesCabinType inner join Amenities
-	on AmenitiesCabinType.AmenityID = Amenities.ID
-where CabinTypeID like @cabinTypeID
+GO
+CREATE PROC proc_GetAmenitiesByCabinTypeID @cabinTypeID int
+AS
+SELECT AmenityID AS ID, Service, Price
+FROM AmenitiesCabinType inner join Amenities
+	ON AmenitiesCabinType.AmenityID = Amenities.ID
+WHERE CabinTypeID like @cabinTypeID
 
-go
-exec proc_GetAmenitiesByCabinTypeID 3
+GO
+EXEC proc_GetAmenitiesByCabinTypeID 3
 
-exec proc_GetFlightsByBookingReference '12345E'
+GO
+EXEC proc_GetFlightsByBookingReference 'NDURRA'
+
+
