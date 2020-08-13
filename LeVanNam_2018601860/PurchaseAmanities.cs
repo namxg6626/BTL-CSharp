@@ -16,6 +16,7 @@ namespace GUI
     public partial class PurchaseAmanities : Form
     {
         Dictionary<string, DTO_Amenity> amenityKeyValuePairs = new Dictionary<string, DTO_Amenity>();
+        //List<DTO_AmenityTicket> lsStoredAmenitiesTicket = new List<DTO_AmenityTicket>();
 
         public PurchaseAmanities()
         {
@@ -89,7 +90,11 @@ namespace GUI
 
         private void btnShowAnimities_Click(object sender, EventArgs e)
         {
+            ClearAllAmenityCheckBoxes();
+
             // Declare phase
+
+            amenityKeyValuePairs = new Dictionary<string, DTO_Amenity>();
 
             string ticketID = cbFlights.SelectedValue.ToString();
             BUS_Ticket bus_ticket = new BUS_Ticket();
@@ -143,7 +148,6 @@ namespace GUI
                     if (amenityTicket.AmenityID == lsAmenities[i].ID)
                     {
                         chkBox.Checked = true;
-                        chkBox.Enabled = false;
                         break;
                     }
                 }
