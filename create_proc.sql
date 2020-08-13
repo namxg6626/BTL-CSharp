@@ -1,15 +1,20 @@
-SELECT * FROM Tickets
+	
 SELECT * FROM Schedules
 SELECT * FROM Aircrafts
 SELECT * FROM Airports
 SELECT * FROM Routes
 SELECT * FROM Amenities
 SELECT * FROM AmenitiesTickets
+--delete from AmenitiesTickets
 SELECT * FROM CabinTypes
 SELECT * FROM AmenitiesCabinType
 
 SELECT * FROM Tickets WHERE BookingReference like '12345E'
 SELECT * FROM Schedules WHERE ID like 117
+
+--
+-- CREATE PROC
+--
 
 GO
 CREATE PROC proc_GetFlightsByBookingReference @bookingReference varchar(6)
@@ -34,9 +39,29 @@ FROM AmenitiesCabinType inner join Amenities
 WHERE CabinTypeID like @cabinTypeID
 
 GO
+CREATE PROC proc_InsertAmenitiesTickets @amenityID int, @ticketID int
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM 
+				   AmenitiesTickets WHERE AmenityID LIKE @amenityID AND TicketID LIKE @ticketID)
+	BEGIN
+		DECLARE @price money
+		SET @price = (SELECT Price From Amenities WHERE ID LIKE @amenityID)
+		INSERT AmenitiesTickets VALUES (@amenityID, @ticketID, @price)
+		PRINT 'Insert successfully'
+	END
+	ELSE PRINT 'Duplicate! No row affected'
+END
+
+--
+-- Test Phase
+--
+
+GO
+EXEC proc_InsertAmenitiesTickets @amenityID = 1, @ticketID = 8345
+
+GO
 EXEC proc_GetAmenitiesByCabinTypeID 3
 
 GO
 EXEC proc_GetFlightsByBookingReference 'NDURRA'
-
-

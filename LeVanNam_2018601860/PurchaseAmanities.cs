@@ -24,6 +24,28 @@ namespace GUI
         //
         // UI Event methods
         //
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string ticketID = cbFlights.SelectedValue.ToString();
+            BUS_AmenityTicket bus_amenityTicket = new BUS_AmenityTicket();
+            DTO_AmenityTicket amenityTicket = new DTO_AmenityTicket();
+            amenityTicket.TicketID = ticketID;
+
+            foreach (Control control in gbAmenities.Controls)
+            {
+                CheckBox chkBox = (CheckBox)control;
+                amenityTicket.AmenityID = amenityKeyValuePairs[chkBox.Text].ID;
+
+                if (chkBox.Checked && chkBox.Enabled)
+                    bus_amenityTicket.InsertARow(amenityTicket);
+
+                else if (!chkBox.Checked)
+                    bus_amenityTicket.DeleteArow(amenityTicket);
+
+            }
+
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -86,13 +108,22 @@ namespace GUI
             lbCabinClass.Text = cabinType.Name;
 
             gbAmenities.Enabled = true;
-            DynamicRenderingCheckBoxes(lsAmenities);
+            DynamicRenderingCheckBoxes(lsAmenities, ticketID);
+            CalculateAmenityCost();
+        }
+
+        private void DynamicAmenityCheckBox_CustomClickEvent(object sender, EventArgs e)
+        {
+            CalculateAmenityCost();
         }
         //
         // Common methods
         //
-        private void DynamicRenderingCheckBoxes(List<DTO_Amenity> lsAmenities)
+        private void DynamicRenderingCheckBoxes(List<DTO_Amenity> lsAmenities, string ticketID)
         {
+            BUS_AmenityTicket bus_amenityTicket = new BUS_AmenityTicket();
+            List<DTO_AmenityTicket> lsAmenitiesTicket = bus_amenityTicket.GetAmenitiesTicketListByTicketID(ticketID);
+
             for (int i = 0; i < lsAmenities.Count; i++)
             {
                 string key = string.Format("{0} (${1})", lsAmenities[i].Service, lsAmenities[i].Price);
@@ -106,6 +137,17 @@ namespace GUI
                 chkBox.AutoSize = true;
                 chkBox.Click += new EventHandler(DynamicAmenityCheckBox_CustomClickEvent);
 
+                // if this amenity is selected before, check its check box
+                foreach (DTO_AmenityTicket amenityTicket in lsAmenitiesTicket)
+                {
+                    if (amenityTicket.AmenityID == lsAmenities[i].ID)
+                    {
+                        chkBox.Checked = true;
+                        chkBox.Enabled = false;
+                        break;
+                    }
+                }
+
                 // disable default amenities
                 if (lsAmenities[i].Price == 0)
                 {
@@ -117,15 +159,17 @@ namespace GUI
             }
         }
 
-        private void DynamicAmenityCheckBox_CustomClickEvent(object sender, EventArgs e)
+        private void CalculateAmenityCost()
         {
             double itemsSelectedCost = 0;
 
             foreach (Control control in gbAmenities.Controls)
             {
                 CheckBox chkBox = (CheckBox)control;
-                if (chkBox.Checked)
+                if (chkBox.Checked && chkBox.Enabled)
+                {
                     itemsSelectedCost += amenityKeyValuePairs[chkBox.Text].Price;
+                }
             }
 
             double taxes = Math.Round(itemsSelectedCost % 0.05, 2);

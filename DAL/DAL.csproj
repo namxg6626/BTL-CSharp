@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL_Amenities.cs" />
+    <Compile Include="DAL_AmenitiesTickets.cs" />
     <Compile Include="DAL_CabinTypes.cs" />
     <Compile Include="DAL_Flights.cs" />
     <Compile Include="DAL_Routes.cs" />
