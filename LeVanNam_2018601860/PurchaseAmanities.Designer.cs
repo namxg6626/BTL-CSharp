@@ -52,6 +52,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.lbPaid = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.gbFlightList.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,7 +73,6 @@
             this.tbBookReference.Name = "tbBookReference";
             this.tbBookReference.Size = new System.Drawing.Size(306, 20);
             this.tbBookReference.TabIndex = 1;
-            this.tbBookReference.Text = "NCADIG";
             // 
             // btnOk
             // 
@@ -99,6 +100,7 @@
             this.gbFlightList.Controls.Add(this.btnShowAnimities);
             this.gbFlightList.Controls.Add(this.cbFlights);
             this.gbFlightList.Controls.Add(this.label1);
+            this.gbFlightList.Enabled = false;
             this.gbFlightList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbFlightList.Location = new System.Drawing.Point(42, 80);
             this.gbFlightList.Name = "gbFlightList";
@@ -115,6 +117,7 @@
             this.lbTest.Size = new System.Drawing.Size(125, 16);
             this.lbTest.TabIndex = 7;
             this.lbTest.Text = "Test Result Here";
+            this.lbTest.Visible = false;
             // 
             // btnShowAnimities
             // 
@@ -212,7 +215,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(39, 501);
+            this.label4.Location = new System.Drawing.Point(39, 514);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 16);
             this.label4.TabIndex = 13;
@@ -222,7 +225,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(39, 529);
+            this.label5.Location = new System.Drawing.Point(39, 542);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(110, 16);
             this.label5.TabIndex = 14;
@@ -232,7 +235,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(39, 557);
+            this.label7.Location = new System.Drawing.Point(39, 570);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(95, 16);
             this.label7.TabIndex = 15;
@@ -242,7 +245,7 @@
             // 
             this.lbDutiesAndTaxes.AutoSize = true;
             this.lbDutiesAndTaxes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDutiesAndTaxes.Location = new System.Drawing.Point(155, 529);
+            this.lbDutiesAndTaxes.Location = new System.Drawing.Point(155, 542);
             this.lbDutiesAndTaxes.Name = "lbDutiesAndTaxes";
             this.lbDutiesAndTaxes.Size = new System.Drawing.Size(44, 16);
             this.lbDutiesAndTaxes.TabIndex = 16;
@@ -252,7 +255,7 @@
             // 
             this.lbItemsSelected.AutoSize = true;
             this.lbItemsSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbItemsSelected.Location = new System.Drawing.Point(155, 501);
+            this.lbItemsSelected.Location = new System.Drawing.Point(155, 514);
             this.lbItemsSelected.Name = "lbItemsSelected";
             this.lbItemsSelected.Size = new System.Drawing.Size(44, 16);
             this.lbItemsSelected.TabIndex = 17;
@@ -262,7 +265,7 @@
             // 
             this.lbTotalPayable.AutoSize = true;
             this.lbTotalPayable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTotalPayable.Location = new System.Drawing.Point(155, 557);
+            this.lbTotalPayable.Location = new System.Drawing.Point(155, 570);
             this.lbTotalPayable.Name = "lbTotalPayable";
             this.lbTotalPayable.Size = new System.Drawing.Size(44, 16);
             this.lbTotalPayable.TabIndex = 18;
@@ -270,7 +273,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(520, 501);
+            this.btnSave.Location = new System.Drawing.Point(520, 514);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(224, 23);
             this.btnSave.TabIndex = 19;
@@ -280,7 +283,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(520, 550);
+            this.btnExit.Location = new System.Drawing.Point(520, 563);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(224, 23);
             this.btnExit.TabIndex = 20;
@@ -296,12 +299,35 @@
             this.label8.Size = new System.Drawing.Size(44, 13);
             this.label8.TabIndex = 21;
             this.label8.Text = "12345E";
+            this.label8.Visible = false;
+            // 
+            // lbPaid
+            // 
+            this.lbPaid.AutoSize = true;
+            this.lbPaid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPaid.Location = new System.Drawing.Point(155, 489);
+            this.lbPaid.Name = "lbPaid";
+            this.lbPaid.Size = new System.Drawing.Size(44, 16);
+            this.lbPaid.TabIndex = 23;
+            this.lbPaid.Text = "[$XX]";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(39, 489);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(39, 16);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Paid:";
             // 
             // PurchaseAmanities
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 624);
+            this.Controls.Add(this.lbPaid);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSave);
@@ -357,6 +383,8 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lbTest;
+        private System.Windows.Forms.Label lbPaid;
+        private System.Windows.Forms.Label label10;
     }
 }
 

@@ -23,5 +23,18 @@ namespace DAL
 				return null;
 			}
         }
+
+		public DataTable GetPurchasedAmenitiesTableByTicketID(string ticketID)
+		{
+			try
+			{
+				string query = string.Format("exec proc_GetPurchasedAmenitiesByTicketID {0}", ticketID);
+				return base.GetTable(query);
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
     }
 }
