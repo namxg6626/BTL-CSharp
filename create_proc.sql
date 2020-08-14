@@ -1,4 +1,3 @@
-	
 SELECT * FROM Schedules
 SELECT * FROM Aircrafts
 SELECT * FROM Airports
@@ -53,9 +52,23 @@ BEGIN
 	ELSE PRINT 'Duplicate! No row affected'
 END
 
+GO
+CREATE PROC proc_GetPurchasedAmenitiesByTicketID @ticketID int
+AS
+BEGIN
+	SELECT * 
+	FROM Amenities
+	WHERE ID IN (SELECT AmenityID
+			     FROM AmenitiesTickets
+				 WHERE TicketID LIKE @ticketID)
+END
+
 --
 -- Test Phase
 --
+
+GO
+EXEC proc_GetPurchasedAmenitiesByTicketID 437
 
 GO
 EXEC proc_InsertAmenitiesTickets @amenityID = 1, @ticketID = 8345

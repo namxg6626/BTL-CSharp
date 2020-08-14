@@ -34,5 +34,26 @@ namespace BUS
 
             return lsAmenities;
         }
+
+        public List<DTO_Amenity> GetPurchasedAmenitiesListByTicketID(string ticketID)
+        {
+            List<DTO_Amenity> lsAmenities = new List<DTO_Amenity>();
+            DataTable dt = dal_amenities.GetPurchasedAmenitiesTableByTicketID(ticketID);
+
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    DTO_Amenity amenity = new DTO_Amenity();
+                    amenity.ID = dr["ID"].ToString();
+                    amenity.Service = dr["Service"].ToString();
+                    amenity.Price = double.Parse(dr["Price"].ToString());
+
+                    lsAmenities.Add(amenity);
+                }
+            }
+
+            return lsAmenities;
+        }
     }
 }
