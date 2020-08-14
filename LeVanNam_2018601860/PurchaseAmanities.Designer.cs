@@ -73,7 +73,6 @@
             this.tbBookReference.Name = "tbBookReference";
             this.tbBookReference.Size = new System.Drawing.Size(306, 20);
             this.tbBookReference.TabIndex = 1;
-            this.tbBookReference.Text = "NCADIG";
             // 
             // btnOk
             // 
@@ -118,6 +117,7 @@
             this.lbTest.Size = new System.Drawing.Size(125, 16);
             this.lbTest.TabIndex = 7;
             this.lbTest.Text = "Test Result Here";
+            this.lbTest.Visible = false;
             // 
             // btnShowAnimities
             // 
@@ -299,12 +299,13 @@
             this.label8.Size = new System.Drawing.Size(44, 13);
             this.label8.TabIndex = 21;
             this.label8.Text = "12345E";
+            this.label8.Visible = false;
             // 
             // lbPaid
             // 
             this.lbPaid.AutoSize = true;
             this.lbPaid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPaid.Location = new System.Drawing.Point(155, 486);
+            this.lbPaid.Location = new System.Drawing.Point(155, 489);
             this.lbPaid.Name = "lbPaid";
             this.lbPaid.Size = new System.Drawing.Size(44, 16);
             this.lbPaid.TabIndex = 23;
@@ -314,10 +315,10 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(39, 486);
+            this.label10.Location = new System.Drawing.Point(39, 489);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(39, 16);
-            this.label10.TabIndex = 24;
+            this.label10.TabIndex = 22;
             this.label10.Text = "Paid:";
             // 
             // PurchaseAmanities
@@ -325,8 +326,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 624);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.lbPaid);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSave);

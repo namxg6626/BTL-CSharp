@@ -19,6 +19,7 @@ namespace GUI
         List<DTO_Amenity> lsPurchasedAmenitiesByTicketID = new List<DTO_Amenity>();
         List<DTO_Amenity> lsAmenities = new List<DTO_Amenity>();
         double previousAmenitiesCost = 0;
+        double currentAmenitiesCost = 0;
 
         public PurchaseAmanities()
         {
@@ -44,7 +45,6 @@ namespace GUI
 
                 else if (!chkBox.Checked)
                     bus_amenityTicket.DeleteArow(amenityTicket);
-
             }
 
         }
@@ -127,6 +127,7 @@ namespace GUI
         {
             string ticketID = cbFlights.SelectedValue.ToString();
             BUS_AmenityTicket bus_amenityTicket = new BUS_AmenityTicket();
+            previousAmenitiesCost = 0;
 
             for (int i = 0; i < lsAmenities.Count; i++)
             {
@@ -141,11 +142,13 @@ namespace GUI
                 chkBox.AutoSize = true;
                 chkBox.Click += new EventHandler(DynamicAmenityCheckBox_CustomClickEvent);
 
+
                 //if this amenity is selected before, check its check box
                 foreach (DTO_Amenity purchasedAmenity in lsPurchasedAmenitiesByTicketID)
                     if (purchasedAmenity.ID == lsAmenities[i].ID)
                     {
                         chkBox.Checked = true;
+                        previousAmenitiesCost += purchasedAmenity.Price;
                         break;
                     }
 
@@ -158,11 +161,12 @@ namespace GUI
 
                 gbAmenities.Controls.Add(chkBox);
             }
+            previousAmenitiesCost = previousAmenitiesCost + Math.Round(previousAmenitiesCost * 0.05, 2);
         }
 
         private void CalculateAmenityCost()
         {
-            double itemsSelectedCost = 0;
+            currentAmenitiesCost = 0;
 
             foreach (Control control in gbAmenities.Controls)
             {
@@ -170,17 +174,19 @@ namespace GUI
                 DTO_Amenity amenity = amenityKeyValuePairs[chkBox.Text];
 
                 if (chkBox.Checked && chkBox.Enabled)
-                    itemsSelectedCost += amenity.Price;
+                {
+                    currentAmenitiesCost += amenity.Price;
+                }
             }
 
-            double taxes = Math.Round(itemsSelectedCost * 0.05, 2);
-            double total = itemsSelectedCost + taxes;
-            previousAmenitiesCost = total - previousAmenitiesCost;
+            double taxes = Math.Round(currentAmenitiesCost * 0.05, 2);
+            double total = currentAmenitiesCost + taxes;
 
-            lbItemsSelected.Text = "$" + itemsSelectedCost.ToString();
+            lbPaid.Text = "$" + (currentAmenitiesCost + taxes).ToString();
+            lbItemsSelected.Text = "$" + currentAmenitiesCost.ToString();
             lbDutiesAndTaxes.Text = "$" + taxes.ToString();
-            lbTotalPayable.Text = "$" + total.ToString();
-            lbPaid.Text = "$" + previousAmenitiesCost.ToString();
+            lbTotalPayable.Text = (total - previousAmenitiesCost).ToString();
+            currentAmenitiesCost = total;
         }
 
         private void ClearAllAmenityCheckBoxes()
@@ -188,9 +194,6 @@ namespace GUI
             while (gbAmenities.Controls.Count > 0)
             {
                 int lastIndex = gbAmenities.Controls.Count - 1;
-                gbAmenities.Controls[lastIndex].Click -= DynamicAmenityCheckBox_CustomClickEvent;
-                ((CheckBox)gbAmenities.Controls[lastIndex]).Enabled = false;
-                ((CheckBox)gbAmenities.Controls[lastIndex]).Visible = false;
                 gbAmenities.Controls.Remove(gbAmenities.Controls[lastIndex]);
             }
         }
