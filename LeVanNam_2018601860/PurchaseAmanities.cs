@@ -95,7 +95,6 @@ namespace GUI
 
         private void ShowAmenities()
         {
-            isNewAmenitiesLoad = true;
             ClearAllAmenityCheckBoxes();
             ResetAmenityData();
 
@@ -248,6 +247,7 @@ namespace GUI
             lsPurchasedAmenitiesByTicketID = new List<DTO_Amenity>();
             amenityKeyValuePairs = new Dictionary<string, DTO_Amenity>();
             previousAmenitiesCost = 0;
+            isNewAmenitiesLoad = true;
         }
     }
 }
