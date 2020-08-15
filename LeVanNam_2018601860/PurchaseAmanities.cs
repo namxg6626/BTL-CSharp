@@ -46,7 +46,17 @@ namespace GUI
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SaveAmenitiesTicket();
+            DialogResult dialogResult = MessageBox.Show("Are you sure?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                MessageBox.Show("Thanks for your purchase!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                SaveAmenitiesTicket();
+                ShowAmenities();
+            }
+            else
+            {
+                MessageBox.Show("Payment was canceled!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
