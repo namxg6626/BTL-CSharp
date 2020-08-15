@@ -287,7 +287,7 @@
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(224, 23);
             this.btnExit.TabIndex = 20;
-            this.btnExit.Text = "Exit";
+            this.btnExit.Text = "Close";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -350,6 +350,7 @@
             this.Controls.Add(this.lbBookinReference);
             this.Name = "PurchaseAmanities";
             this.Text = "Purchase Aminities";
+            this.Load += new System.EventHandler(this.PurchaseAmanities_Load);
             this.gbFlightList.ResumeLayout(false);
             this.gbFlightList.PerformLayout();
             this.ResumeLayout(false);

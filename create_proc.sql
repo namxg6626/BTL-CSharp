@@ -63,6 +63,13 @@ BEGIN
 				 WHERE TicketID LIKE @ticketID)
 END
 
+select ID 
+from Tickets 
+where ScheduleID in (select ID 
+					 from Schedules
+					 where FlightNumber = 50 
+						   and date between '2018-10-04' and '2018-10-08')
+
 --
 -- Test Phase
 --

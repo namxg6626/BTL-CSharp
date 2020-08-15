@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AmenitiesManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AmenitiesManager.Designer.cs">
+      <DependentUpon>AmenitiesManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AmenitiesReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AmenitiesReport.Designer.cs">
+      <DependentUpon>AmenitiesReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="PurchaseAmanities.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +66,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AmenitiesManager.resx">
+      <DependentUpon>AmenitiesManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AmenitiesReport.resx">
+      <DependentUpon>AmenitiesReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PurchaseAmanities.resx">
       <DependentUpon>PurchaseAmanities.cs</DependentUpon>
     </EmbeddedResource>

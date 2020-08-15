@@ -30,6 +30,12 @@ namespace GUI
         //
         // UI Event methods
         //
+        private void PurchaseAmanities_Load(object sender, EventArgs e)
+        {
+            this.TopMost = true;
+            this.Activate();
+        }
+
         private void btnOk_Click(object sender, EventArgs e)
         {
             LoadFlightsList();
