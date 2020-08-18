@@ -62,13 +62,29 @@ BEGIN
 			     FROM AmenitiesTickets
 				 WHERE TicketID LIKE @ticketID)
 END
+	
+SELECT *  FROM AmenitiesTickets
 
-select ID 
-from Tickets 
-where ScheduleID in (select ID 
-					 from Schedules
-					 where FlightNumber = 50 
-						   and date between '2018-10-04' and '2018-10-08')
+GO
+CREATE FUNCTION func_GetReportByAmenityID (@flightNumber nvarchar(10), @amenityID int, @from date, @to date)
+RETURNS TABLE
+AS
+RETURN SELECT CabinTypeID, COUNT(*) AS Total
+	FROM Tickets t LEFT JOIN AmenitiesTickets a
+		ON t.ID = a.TicketID
+	WHERE ScheduleID in (SELECT ID 
+						 FROM Schedules
+						 WHERE FlightNumber like @flightNumber 
+						 AND Date BETWEEN @from AND @to)
+	AND a.AmenityID like @amenityID
+	GROUP BY CabinTypeID
+---
+---
+---
+GO
+select Name, Total 
+from CabinTypes left join func_GetReportByAmenityID(N'49', 4, '2018-10-03', '2018-10-13') AmenityiesReport
+	on AmenityiesReport.CabinTypeID = CabinTypes.ID
 
 --
 -- Test Phase
