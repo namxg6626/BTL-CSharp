@@ -44,7 +44,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(23, 71);
+            this.label1.Location = new System.Drawing.Point(23, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 16);
             this.label1.TabIndex = 0;
@@ -52,7 +52,7 @@
             // 
             // tbFlightNumber
             // 
-            this.tbFlightNumber.Location = new System.Drawing.Point(123, 70);
+            this.tbFlightNumber.Location = new System.Drawing.Point(123, 48);
             this.tbFlightNumber.Name = "tbFlightNumber";
             this.tbFlightNumber.Size = new System.Drawing.Size(184, 20);
             this.tbFlightNumber.TabIndex = 1;
@@ -62,7 +62,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(80, 110);
+            this.label2.Location = new System.Drawing.Point(80, 88);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 16);
             this.label2.TabIndex = 2;
@@ -71,7 +71,7 @@
             // dtFrom
             // 
             this.dtFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFrom.Location = new System.Drawing.Point(123, 110);
+            this.dtFrom.Location = new System.Drawing.Point(123, 88);
             this.dtFrom.Name = "dtFrom";
             this.dtFrom.Size = new System.Drawing.Size(184, 20);
             this.dtFrom.TabIndex = 3;
@@ -80,7 +80,7 @@
             // dtTo
             // 
             this.dtTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtTo.Location = new System.Drawing.Point(377, 110);
+            this.dtTo.Location = new System.Drawing.Point(377, 88);
             this.dtTo.Name = "dtTo";
             this.dtTo.Size = new System.Drawing.Size(184, 20);
             this.dtTo.TabIndex = 5;
@@ -90,7 +90,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(349, 110);
+            this.label3.Location = new System.Drawing.Point(349, 88);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(22, 16);
             this.label3.TabIndex = 4;
@@ -98,7 +98,7 @@
             // 
             // btnMakeReport
             // 
-            this.btnMakeReport.Location = new System.Drawing.Point(625, 110);
+            this.btnMakeReport.Location = new System.Drawing.Point(625, 88);
             this.btnMakeReport.Name = "btnMakeReport";
             this.btnMakeReport.Size = new System.Drawing.Size(105, 23);
             this.btnMakeReport.TabIndex = 6;
@@ -109,17 +109,17 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(53, 237);
+            this.dataGridView1.Location = new System.Drawing.Point(53, 215);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(677, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(677, 200);
             this.dataGridView1.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(50, 207);
+            this.label4.Location = new System.Drawing.Point(50, 185);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(138, 16);
             this.label4.TabIndex = 8;

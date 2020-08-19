@@ -64,19 +64,21 @@ BEGIN
 END
 
 GO
-ALTER FUNCTION func_GetReportByAmenityIDAndCabinID (@flightNumber nvarchar(10), @amenityID int, @cabinID int, @from date, @to date)
+CREATE FUNCTION func_GetReportByAmenityIDAndCabinID (@flightNumber nvarchar(10), @amenityID int, @cabinID int, @from date, @to date)
 RETURNS TABLE
 AS
-RETURN SELECT CabinTypeID, COUNT(*) AS Total
+RETURN SELECT t.CabinTypeID, COUNT(*) AS Total
 	FROM Tickets t LEFT JOIN AmenitiesTickets a
 		ON t.ID = a.TicketID
+	LEFT JOIN AmenitiesCabinType act
+		ON t.CabinTypeID = act.CabinTypeID
 	WHERE ScheduleID in (SELECT ID 
 						 FROM Schedules
 						 WHERE FlightNumber like @flightNumber 
 						 AND Date BETWEEN @from AND @to)
-	AND a.AmenityID like @amenityID
-	AND CabinTypeID like @cabinID
-	GROUP BY CabinTypeID
+	AND (a.AmenityID LIKE @amenityID OR act.AmenityID LIKE 7)
+	AND t.CabinTypeID LIKE @cabinID
+	GROUP BY t.CabinTypeID
 
 
 GO
@@ -104,3 +106,16 @@ EXEC proc_GetAmenitiesByCabinTypeID 3
 
 GO
 EXEC proc_GetFlightsByBookingReference 'NDURRA'
+
+SELECT t.CabinTypeID, COUNT(*) AS Total
+	FROM Tickets t LEFT JOIN AmenitiesTickets a
+		ON t.ID = a.TicketID
+	LEFT JOIN AmenitiesCabinType act
+		ON t.CabinTypeID = act.CabinTypeID
+	WHERE ScheduleID in (SELECT ID 
+						 FROM Schedules
+						 WHERE FlightNumber like N'49' 
+						 AND Date BETWEEN '2018-10-03' AND '2018-10-13')
+	AND (a.AmenityID like 7 or act.AmenityID like 7)
+	AND t.CabinTypeID like 1
+	GROUP BY t.CabinTypeID

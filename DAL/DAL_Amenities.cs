@@ -48,5 +48,17 @@ namespace DAL
 				return null;
 			}
 		}
+
+		public DataTable GetAllAmenities()
+		{
+			try
+			{
+				return this.GetTable("select * from Amenities");
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
     }
 }
