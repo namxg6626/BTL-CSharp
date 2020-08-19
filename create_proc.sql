@@ -78,17 +78,20 @@ RETURN SELECT CabinTypeID, COUNT(*) AS Total
 						 AND Date BETWEEN @from AND @to)
 	AND a.AmenityID like @amenityID
 	GROUP BY CabinTypeID
----
----
----
+
 GO
+CREATE PROC proc_GetReportByAmenityID @flightNumber nvarchar(10), @amenityID int, @from date, @to date
+AS
 select Name, Total 
-from CabinTypes left join func_GetReportByAmenityID(N'49', 4, '2018-10-03', '2018-10-13') AmenityiesReport
+from CabinTypes left join func_GetReportByAmenityID(@flightNumber, @amenityID, @from, @to) AmenityiesReport
 	on AmenityiesReport.CabinTypeID = CabinTypes.ID
 
 --
 -- Test Phase
 --
+
+GO
+EXEC proc_GetReportByAmenityID N'49', 4, '2018-10-03', '2018-10-13'
 
 GO
 EXEC proc_GetPurchasedAmenitiesByTicketID 437
