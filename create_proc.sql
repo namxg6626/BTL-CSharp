@@ -62,11 +62,9 @@ BEGIN
 			     FROM AmenitiesTickets
 				 WHERE TicketID LIKE @ticketID)
 END
-	
-SELECT *  FROM AmenitiesTickets
 
 GO
-CREATE FUNCTION func_GetReportByAmenityID (@flightNumber nvarchar(10), @amenityID int, @from date, @to date)
+ALTER FUNCTION func_GetReportByAmenityIDAndCabinID (@flightNumber nvarchar(10), @amenityID int, @cabinID int, @from date, @to date)
 RETURNS TABLE
 AS
 RETURN SELECT CabinTypeID, COUNT(*) AS Total
@@ -77,10 +75,12 @@ RETURN SELECT CabinTypeID, COUNT(*) AS Total
 						 WHERE FlightNumber like @flightNumber 
 						 AND Date BETWEEN @from AND @to)
 	AND a.AmenityID like @amenityID
+	AND CabinTypeID like @cabinID
 	GROUP BY CabinTypeID
 
+
 GO
-CREATE PROC proc_GetReportByAmenityID @flightNumber nvarchar(10), @amenityID int, @from date, @to date
+CREATE PROC proc_GetAmenityReport @flightNumber nvarchar(10), @amenityID int, @from date, @to date
 AS
 select Name, Total 
 from CabinTypes left join func_GetReportByAmenityID(@flightNumber, @amenityID, @from, @to) AmenityiesReport
@@ -91,7 +91,7 @@ from CabinTypes left join func_GetReportByAmenityID(@flightNumber, @amenityID, @
 --
 
 GO
-EXEC proc_GetReportByAmenityID N'49', 4, '2018-10-03', '2018-10-13'
+EXEC proc_GetAmenityReport N'49', 4, '2018-10-03', '2018-10-13'
 
 GO
 EXEC proc_GetPurchasedAmenitiesByTicketID 437

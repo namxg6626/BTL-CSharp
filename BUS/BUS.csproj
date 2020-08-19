@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS_AmenityReport.cs" />
     <Compile Include="BUS_Amenity.cs" />
     <Compile Include="BUS_AmenityTicket.cs" />
     <Compile Include="BUS_CabinType.cs" />
