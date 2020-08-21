@@ -64,22 +64,40 @@ BEGIN
 END
 
 GO
-CREATE FUNCTION func_GetReportByAmenityIDAndCabinID (@flightNumber nvarchar(10), @amenityID int, @cabinID int, @from date, @to date)
-RETURNS TABLE
-AS
-RETURN SELECT t.CabinTypeID, COUNT(*) AS Total
-	FROM Tickets t LEFT JOIN AmenitiesTickets a
-		ON t.ID = a.TicketID
-	LEFT JOIN AmenitiesCabinType act
-		ON t.CabinTypeID = act.CabinTypeID
-	WHERE ScheduleID in (SELECT ID 
-						 FROM Schedules
-						 WHERE FlightNumber like @flightNumber 
-						 AND Date BETWEEN @from AND @to)
-	AND (a.AmenityID LIKE @amenityID OR act.AmenityID LIKE 7)
-	AND t.CabinTypeID LIKE @cabinID
-	GROUP BY t.CabinTypeID
-
+ALTER FUNCTION func_GetReportByAmenityIDAndCabinID (@flightNumber nvarchar(10), @amenityID int, @cabinID int, @from date, @to date)
+RETURNS @table TABLE (
+	CabinTypeID int,
+	Total int
+)
+BEGIN
+	IF EXISTS (SELECT * FROM Amenities WHERE Price = 0 AND ID LIKE @amenityID)
+	BEGIN
+		INSERT @table 
+			SELECT T.CabinTypeID, COUNT(*) AS Total
+			FROM Tickets T LEFT JOIN AmenitiesCabinType A
+				ON T.CabinTypeID = A.CabinTypeID
+			WHERE ScheduleID in (SELECT ID 
+									FROM Schedules
+									WHERE FlightNumber like @flightNumber 
+									AND Date BETWEEN @from AND @to)
+			AND a.AmenityID LIKE @amenityID
+			AND t.CabinTypeID LIKE @cabinID
+			GROUP BY t.CabinTypeID
+		RETURN
+	END
+	INSERT @table 
+		SELECT t.CabinTypeID, COUNT(*) AS Total
+		FROM Tickets t LEFT JOIN AmenitiesTickets a
+			ON t.ID = a.TicketID
+		WHERE ScheduleID in (SELECT ID 
+								FROM Schedules
+								WHERE FlightNumber like @flightNumber 
+								AND Date BETWEEN @from AND @to)
+		AND a.AmenityID LIKE @amenityID
+		AND t.CabinTypeID LIKE @cabinID
+		GROUP BY t.CabinTypeID
+	RETURN
+END
 
 GO
 CREATE PROC proc_GetAmenityReport @flightNumber nvarchar(10), @amenityID int, @from date, @to date
@@ -91,6 +109,9 @@ from CabinTypes left join func_GetReportByAmenityID(@flightNumber, @amenityID, @
 --
 -- Test Phase
 --
+
+GO
+SELECT * FROM func_GetReportByAmenityIDAndCabinID(49, 7, 3, '2018-10-03', '2018-10-13')
 
 GO
 EXEC proc_GetAmenityReport N'49', 4, '2018-10-03', '2018-10-13'
@@ -116,6 +137,6 @@ SELECT t.CabinTypeID, COUNT(*) AS Total
 						 FROM Schedules
 						 WHERE FlightNumber like N'49' 
 						 AND Date BETWEEN '2018-10-03' AND '2018-10-13')
-	AND (a.AmenityID like 7 or act.AmenityID like 7)
-	AND t.CabinTypeID like 1
+	AND (a.AmenityID like 4 or act.AmenityID like 4)
+	AND t.CabinTypeID like 3
 	GROUP BY t.CabinTypeID
