@@ -31,7 +31,7 @@ namespace BUS
                 flight.FlightNumber = dr["FlightNumber"].ToString();
                 flight.DepartureAirportCode = dr["DepartureAirportCode"].ToString();
                 flight.ArrivalAirportCode = dr["ArrivalAirportCode"].ToString();
-                flight.Date = dr["Date"].ToString();
+                flight.Date = DateTime.Parse(dr["Date"].ToString()).ToString("MM/dd/yyyy");
                 flight.Time = dr["Time"].ToString();
 
                 lsFlight.Add(flight);

@@ -5,15 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using DTO;
 
 namespace BUS
 {
     public class BUS_AmenityReport
     {
         DAL_AmenityReport dal_amenityReport = new DAL_AmenityReport();
-        public DataTable GetAllPurchasedAmenitiesReportTable(string flightNumber, string dateFrom, string dateTo)
+        public DataTable GetAmenitiesReportTable(DTO_AmenityReport amenityReport)
         {
-            return dal_amenityReport.GetAllPurchasedAmenitiesReportTable(flightNumber, dateFrom, dateTo);
+            return dal_amenityReport.GetAmenitiesReportTable(amenityReport);
         }
     }
 }

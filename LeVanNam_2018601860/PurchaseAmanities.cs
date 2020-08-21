@@ -32,8 +32,9 @@ namespace GUI
         //
         private void PurchaseAmanities_Load(object sender, EventArgs e)
         {
-            this.TopMost = true;
             this.Activate();
+            gbAmenities.Enabled = false;
+            gbFlightList.Enabled = false;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -52,17 +53,18 @@ namespace GUI
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
+            if (gbAmenities.Enabled)
             {
-                MessageBox.Show("Thanks for your purchase!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                SaveAmenitiesTicket();
-                ShowAmenities();
+                DialogResult dialogResult = MessageBox.Show("Are you sure?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    MessageBox.Show("Thanks for your purchase!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SaveAmenitiesTicket();
+                    ShowAmenities();
+                }
+                else MessageBox.Show("Payment was canceled!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else
-            {
-                MessageBox.Show("Payment was canceled!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            else MessageBox.Show("Nothing to save", "Opps!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -230,7 +232,7 @@ namespace GUI
 
                 else if (!chkBox.Checked)
                     bus_amenityTicket.DeleteArow(amenityTicket);
-            }
+            }            
         }
 
         private void ClearAllAmenityCheckBoxes()
