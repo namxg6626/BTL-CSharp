@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS;
+using DTO;
 
 namespace GUI
 {
@@ -20,20 +21,24 @@ namespace GUI
 
         private void AmenitiesReport_Load(object sender, EventArgs e)
         {
-            this.TopMost = true;
+            dtFrom.Format = DateTimePickerFormat.Custom;
+            dtFrom.CustomFormat = "dd/MM/yyyy";
+
+            dtTo.Format = DateTimePickerFormat.Custom;
+            dtTo.CustomFormat = "dd/MM/yyyy";
+
             this.Activate();
         }
 
         private void btnMakeReport_Click(object sender, EventArgs e)
         {
-            //DateTimePicker _temp = dtFrom;
-            //label4.Text = _temp.Value.ToString("yyyy/MM/dd");
-            string flightNumber = tbFlightNumber.Text;
-            string from = dtFrom.Value.ToString("yyyy/MM/dd");
-            string to = dtTo.Value.ToString("yyyy/MM/dd");
+            DTO_AmenityReport amenityReport = new DTO_AmenityReport(
+                tbFlightNumber.Text,
+                dtFrom.Value,
+                dtTo.Value
+            );
             BUS_AmenityReport bus_amenityReport = new BUS_AmenityReport();
-            DataTable dataSource = bus_amenityReport.GetAllPurchasedAmenitiesReportTable(flightNumber, from, to);
-            dataGridView1.DataSource = dataSource;
+            dataGridView1.DataSource = bus_amenityReport.GetAmenitiesReportTable(amenityReport);
         }
     }
 }

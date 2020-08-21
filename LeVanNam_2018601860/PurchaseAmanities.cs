@@ -32,7 +32,7 @@ namespace GUI
         //
         private void PurchaseAmanities_Load(object sender, EventArgs e)
         {
-            this.TopMost = true;
+            //this.TopMost = true;
             this.Activate();
         }
 
