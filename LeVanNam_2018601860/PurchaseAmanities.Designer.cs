@@ -100,7 +100,6 @@
             this.gbFlightList.Controls.Add(this.btnShowAnimities);
             this.gbFlightList.Controls.Add(this.cbFlights);
             this.gbFlightList.Controls.Add(this.label1);
-            this.gbFlightList.Enabled = false;
             this.gbFlightList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbFlightList.Location = new System.Drawing.Point(42, 80);
             this.gbFlightList.Name = "gbFlightList";
@@ -202,7 +201,6 @@
             // 
             // gbAmenities
             // 
-            this.gbAmenities.Enabled = false;
             this.gbAmenities.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbAmenities.Location = new System.Drawing.Point(42, 298);
             this.gbAmenities.Name = "gbAmenities";
