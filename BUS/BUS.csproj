@@ -46,7 +46,6 @@
     <Compile Include="BUS_AmenityTicket.cs" />
     <Compile Include="BUS_CabinType.cs" />
     <Compile Include="BUS_Flight.cs" />
-    <Compile Include="BUS_Schedule.cs" />
     <Compile Include="BUS_Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -45,8 +45,6 @@
     <Compile Include="DTO_AmenityTicket.cs" />
     <Compile Include="DTO_CabinType.cs" />
     <Compile Include="DTO_Flight.cs" />
-    <Compile Include="DTO_Route.cs" />
-    <Compile Include="DTO_Schedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DTO_Ticket.cs" />
   </ItemGroup>
